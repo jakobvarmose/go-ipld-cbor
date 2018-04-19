@@ -10,11 +10,11 @@ import (
 	"strconv"
 	"strings"
 
-	blocks "github.com/ipfs/go-block-format"
-	cid "github.com/ipfs/go-cid"
-	node "github.com/ipfs/go-ipld-format"
-	mh "github.com/multiformats/go-multihash"
-	cbor "github.com/whyrusleeping/cbor/go"
+	mh "gx/ipfs/QmZyZDi491cCNTLfAhwcaDii2Kg4pwKRkhqQzURGDvY6ua/go-multihash"
+	cbor "gx/ipfs/QmcRKRQjNc2JZPHApR32fbkZVd6WXG2Ch9Kcy7sPxuAJgd/cbor/go"
+	cid "gx/ipfs/QmcZfnkapfECQGcLZaf9B79NRg7cRa9EnZh4LSbkCzwNvY/go-cid"
+	node "gx/ipfs/Qme5bWv7wtjUNGsK2BNGVUFPKiuxWrsqrtvYwCLRw8YFES/go-ipld-format"
+	blocks "gx/ipfs/Qmej7nf81hi2x2tvjRBF3mcp74sQyuDH4VMYDGd1YtXjb2/go-block-format"
 )
 
 const CBORTagLink = 42
@@ -242,6 +242,10 @@ func (n *Node) ResolveLink(path []string) (*node.Link, []string, error) {
 	}
 
 	return nil, rest, fmt.Errorf("found non-link at given path")
+}
+
+func (n *Node) ToPublic() (blocks.Block, error) {
+	return n, nil
 }
 
 func linkCast(lnk interface{}) (*node.Link, error) {
